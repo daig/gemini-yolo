@@ -7,6 +7,8 @@ This simple script lets you access that for market buy orders.
 automatically withdraw from your bank and credit your account.
 - Unlike the webpage you must specify the _buy_ amount rather than the total
   cost. This is more accurate.
+- Unlike the webpage, you can buy in any tradepair, like `eth` and `btc`, not
+  just buying in `usd`
 - Like the webpage, orders are filled as "market orders", which means the best
   price immediately available. There is _NO PRICE PROTECTION_, and will use up
   to your entire balance if you don't bother to look at the current price. If
