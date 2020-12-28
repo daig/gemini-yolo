@@ -20,9 +20,9 @@ serious use the [Industrial API](https://github.com/daig/gemini)
 
 ## Usage
 
-recommended: use the test exchange first.
+recommended: use the [test exchange](https://exchange.sandbox.gemini.com) first.
 
-- create a gemini api key
+- [create a gemini primary api key](https://exchange.gemini.com/settings/api)
 - clone the repo
 - create a .env file in the repo with
 
