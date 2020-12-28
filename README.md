@@ -33,4 +33,4 @@ PRIVATE_KEY="aaaaa"
 
 eg buy 1 btc in usd with:
 
-`(export $(cat .env | xargs) && python3 test btc 1 usd)`
+`(export $(cat .env | xargs) && python3 yolo.py test btc 1 usd)`
