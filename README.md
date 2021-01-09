@@ -33,4 +33,10 @@ PRIVATE_KEY="aaaaa"
 
 eg buy 1 btc in usd with:
 
-`(export $(cat .env | xargs) && python3 yolo.py test btc 1 usd)`
+`(export $(cat .env | xargs) && python3 gemini-buy.py test btc 1 usd)`
+
+Similarly for selling:
+
+`(export $(cat .env | xargs) && python3 gemini-buy.py test eth 1 usd)`
+
+Selling currently only works in usd.
