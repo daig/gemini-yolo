@@ -9,11 +9,11 @@ automatically withdraw from your bank and credit your account.
   cost. This is more accurate.
 - Unlike the webpage, you can buy in any tradepair, like `eth` and `btc`, not
   just buying in `usd`
-- Like the webpage, orders are filled as "market orders", which means the best
-  price immediately available. There is _NO PRICE PROTECTION_, and will use up
-  to your entire balance if you don't bother to look at the current price. If
-  you're making a huge order, the price could rise as you dig deeper into the
-  books, exhausting the best trades.
+- Unlike the webpage, orders are filled as "limit orders", which means it will
+  use the best price immediately available up to some limit you set.
+  If you're making a huge order, the price could change as you dig deeper into the
+  books, exhausting the best trades - so this protects you from unexpected
+  price swings. Limits are controlled fractionally by the `margin` parameter.
 
 This script is intended for fast setup on casual trades. For anything more
 serious use the [Industrial API](https://github.com/daig/gemini)
@@ -31,12 +31,32 @@ PUBLIC_KEY="account-stuff"
 PRIVATE_KEY="aaaaa"
 ```
 
+Start with:
+
+`(export $(cat .env | xargs) && python3 -i yolo.py test)`
+
+(substitute "test" for "live" when running with your real account, and remember
+to update the .env with the live credentials too)
+
+inside the interactive environment, 
+
 eg buy 1 btc in usd with:
 
-`(export $(cat .env | xargs) && python3 gemini-buy.py test btc 1 usd)`
+`gemini_market('buy', amount = 1)`
 
-Similarly for selling:
+or sell 1 eth in btc with:
+`gemini_market('sell', amount = 1, asset = 'eth', currency = 'btc')`
 
-`(export $(cat .env | xargs) && python3 gemini-buy.py test eth 1 usd)`
+You can limit the worst case trade by setting the margin parameter.
+Eg to buy 1 btc with a maximum price 1% higher than the current best market buy price:
+`gemini_market('buy', amount = 1, margin = 0.01)`
 
-Selling currently only works in usd.
+Or 1% lower than the current best market sell price:
+`gemini_market('sell', amount = 1, margin = 0.01)`
+
+You can instead set how much currency you want to exchange for the asset in the
+worst case.
+
+eg to buy up to 1000 dollars worth of ethereum:
+
+`gemini_market('buy', cost = 1000, asset = 'eth')`
