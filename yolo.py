@@ -7,6 +7,7 @@ import hashlib
 import datetime, time
 import itertools
 import sys
+import math
 
 def wait():
     time.sleep(0.5)
@@ -71,7 +72,7 @@ def gemini_market_price(buy_or_sell,pair,tick_size,margin):
     return (market_price , price)
 
 def balance_report(balances,asset):
-    balance = balances[asset]
+    balance = balances[asset] if asset in balances else 0
     print("You have {} {}, with {} available to trade, and {} available to withdraw"
             .format(balance['amount'],asset.upper(),balance['available'],balance['availableForWithdrawal']))
 
@@ -88,7 +89,7 @@ def gemini_market(buy_or_sell,amount = None, cost = None, asset = "btc" ,currenc
 
     details = gemini_get("/v1/symbols/details/" + pair)
     tick_size = int(details['tick_size'])
-    quote_increment = int(details['quote_increment'])
+    quote_increment = -round(math.log(details['quote_increment'],10))
 
     prices = gemini_market_price(buy_or_sell,pair,tick_size,margin)
     market_price = prices[0]
