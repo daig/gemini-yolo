@@ -6,7 +6,7 @@ This simple script lets you access that for market buy orders.
 - Unlike the webpage you must have the required USD available, it will not
 automatically withdraw from your bank and credit your account.
 - Unlike the webpage you must specify the _buy_ amount rather than the total
-  cost. This is more accurate.
+  cost. This is more accurate. You can estimate the correct amount using "cost" instead of "amount".
 - Unlike the webpage, you can buy in any tradepair, like `eth` and `btc`, not
   just buying in `usd`
 - Unlike the webpage, orders are filled as "limit orders", which means it will
